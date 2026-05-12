@@ -1,0 +1,30 @@
+name: example 2
+
+on:
+  push:
+    branches-ignore: - main
+
+jobs:
+  -name: linter and validate
+  runs-on: ubuntu-latest
+
+  steps:
+    -name: checkout code
+    uses: actions/checkout@v5
+
+    -name: python setup
+    uses: actions/setup-python@v5
+    with:
+      python-version = "3.10"
+
+    -name: install dependencies
+    run: pip install -r requirements.txt
+
+    -name: linter check
+    run: install flake8 && flake8 . --max-line-length = 120
+
+    -name: commit message contains the keyword [run-train]
+    if: contains (github.event.head_commit.message, '[run-train]')
+    run: python train.py
+
+  
