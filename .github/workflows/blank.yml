@@ -1,7 +1,8 @@
 name: example
 on:
    push:
-        branches-ignore: main
+        branches-ignore:
+         - main
 
   jobs:
       runs on: ubuntu-latest
