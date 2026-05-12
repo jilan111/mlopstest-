@@ -2,25 +2,25 @@ name: example
 on:
    push:
         branches-ignore:
-         - main
+          - main
 
   jobs:
-      runs on: ubuntu-latest
       validate:
-            steps:
+         runs on: ubuntu-latest
+         steps:
             name: checkout code
-            -uses:actions/checkout@v4
+            uses: actions/checkout@v4
             
             name: install setup python
-            -uses: actions/setup-python@v4
-            -with:
-            - python-version: "3.1"
+            uses: actions/setup-python@v4
+            with:
+               python-version: "3.1"
 
-            -name: install requirements
-            -run: pip install -r requirements.txt
+            name: install requirements
+            run: pip install -r requirements.txt
 
-            -name: check code syntax (lint)
-            -run: pip install flake8 && flake8. --max-line-length=120 
+            name: check code syntax (lint)
+            run: pip install flake8 && flake8. --max-line-length=120 
             
             
 
