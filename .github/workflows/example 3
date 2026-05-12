@@ -1,0 +1,31 @@
+name: train model
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  -name: train model
+  id: train
+  run: python train.py
+  runs-on: ubuntu-latest
+
+  steps:
+    -name: upload artifact
+    if: failure()
+    -uses: actions/upload-artifact@v5
+    with:
+      -name:error_logs
+      path:error_logs.txt
+
+
+  -name: cleanup
+  if: always()
+  run: echo "Cleaning up temporary cloud volumes."
+  
+    
+
+    
+
+    
+  
+  
