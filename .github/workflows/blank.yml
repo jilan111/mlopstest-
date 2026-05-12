@@ -1,32 +1,25 @@
 name: example
+
 on:
-   push:
-        branches-ignore:
-          - main
+  push:
+    branches-ignore:
+      - main
 
 jobs:
-   validate:
-      runs-on: ubuntu-latest
-      steps:
-         -name: checkout code
-         uses: actions/checkout@v4
-            
-         -name: install setup python
-         uses: actions/setup-python@v4
-         with:
-            python-version: "3.10"
+  validate:
+    runs-on: ubuntu-latest
 
-         -name: install requirements
-         run: pip install -r requirements.txt
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-         -name: check code syntax (lint)
-         run: pip install flake8 && flake8 . --max-line-length=120 
-            
-            
+      - name: Install Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-            
-            
-        
-                  
+      - name: Install Requirements
+        run: pip install -r requirements.txt
 
-        
+      - name: Check Code Syntax (Lint)
+        run: pip install flake8 && flake8 . --max-line-length=120
